@@ -3,18 +3,19 @@
 //***********************
     day 0: 28-06-24
 //***********************</br>
-    -- creating server and require some packages
-    -- creating project structure planing
-    -- creating a deadline to finice the project 
-    -- up to 5 days must be finice the project
-    -- 03-07-24 is the last date to finice the project
+    -- creating server and require some packages </br>
+    -- creating project structure planing </br>
+    -- creating a deadline to finice the project </br>
+    -- up to 5 days must be finice the project </br>
+    -- 03-07-24 is the last date to finice the project </br>
 
 
 
 //***********************
     day 1: 29-06-24
 //***********************</br>
-    -- using `http-errors` packege to handling error
+    -- using `http-errors` packege to handling error </br>
+    -- git setup and create a git repo on github </br>
 
 
 
