@@ -1,9 +1,11 @@
 // require npm pakages
-const app = require('./app');
+const app = require('./src/app');
 const createError = require('http-errors');
+const { PORT } = require('./src/secret');
 
 
-const PORT = 3009;
+
+
 
 
 //error handling middleware
