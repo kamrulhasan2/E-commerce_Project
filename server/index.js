@@ -5,11 +5,6 @@ const createError = require('http-errors');
 
 const PORT = 3009;
 
-app.get('/',(req,res)=>{
-    // throw new Error('BROKEN') ;
-    res.send('hello ecommarce');
-});
-
 
 //error handling middleware
 

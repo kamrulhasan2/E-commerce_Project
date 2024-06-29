@@ -5,9 +5,9 @@
 //***********************</br>
     -- creating server and require some packages </br>
     -- creating project structure planing </br>
-    -- creating a deadline to finice the project </br>
-    -- up to 5 days must be finice the project </br>
-    -- 03-07-24 is the last date to finice the project </br>
+    -- creating a deadline to finish the project </br>
+    -- up to 5 days must be finish the project </br>
+    -- 03-07-24 is the last date to finish the project </br>
 
 
 
@@ -16,6 +16,10 @@
 //***********************</br>
     -- using `http-errors` packege to handling error </br>
     -- git setup and create a git repo on github </br>
+    -- For api security useing npm packages</br>
+        -- xss-clean </br>
+        -- express-rate-limit </br>
+
 
 
 
