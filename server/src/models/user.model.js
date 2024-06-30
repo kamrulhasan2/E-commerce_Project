@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const { defaultImgPath } = require('../secret');
 
 const userSchema = new mongoose.Schema({
     id:{
@@ -36,12 +37,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         require: true,
         trim: true,
-        set: (v)=> bcrypt.hashSync(v, genSaltSync(10)),
+        set: (v)=> bcrypt.hashSync(v, bcrypt.genSaltSync(10)),
 
 
     },
     image: {
         type: String,
+        default:defaultImgPath
     },
     address: {
         type: String

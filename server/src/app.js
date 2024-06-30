@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const xssClean = require('xss-clean');
 const rateLimit = require('express-rate-limit');
 const userRouter = require('./routers/user.router');
+const seedRouter = require('./routers/seed.router');
 
 
 //create app
@@ -24,7 +25,8 @@ app.use(xssClean());
 app.use(limter);
 
 //cerated middeleware
-app.use(userRouter);
+app.use('/api/user',userRouter);
+app.use('/api/seed',seedRouter);
 
 // root route
 app.get('/',(req,res)=>{
