@@ -1,14 +1,61 @@
-const user = [
-    {
-        name: "kamrul hasan",
-        roll:79,
-        email:"kamrulhasan20656@gmail.com"
-    },
-    {
-        name: "nabila",
-        roll:91,
-        email:"nabila20656@gmail.com"
-    }
-];
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
-module.exports = user;
+const userSchema = new mongoose.Schema({
+    id:{
+        type:String,
+        unique: true
+    },
+    name:{
+        type: String,
+        require: true,
+        trim: true,
+        minlength : [3,'minimum lengeth is 3'],
+        maxlength: [25,'maximum length is 25']
+    },
+    email:{
+        type:String,
+        require: true,
+        trim: true,
+        unique: true,
+        lowercase: true,
+        validate: {
+            validator: (v)=>{
+                return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
+            },
+            message: "please enter a valid email"
+        }
+
+    },
+    phone:{
+        type: String,
+        require: true,
+        trim: true
+    },
+    password: {
+        type: String,
+        require: true,
+        trim: true,
+        set: (v)=> bcrypt.hashSync(v, genSaltSync(10)),
+
+
+    },
+    image: {
+        type: String,
+    },
+    address: {
+        type: String
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
+    isBanned: {
+        type: Boolean,
+        default: false
+    }
+
+},{timestamps:true});
+
+
+module.exports = new mongoose.model('users',userSchema);

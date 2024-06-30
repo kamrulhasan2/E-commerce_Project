@@ -2,6 +2,7 @@
 const app = require('./src/app');
 const createError = require('http-errors');
 const { PORT } = require('./src/secret');
+const connectDatabase = require('./src/config/database');
 
 
 
@@ -26,4 +27,6 @@ const { PORT } = require('./src/secret');
 
 app.listen(PORT,()=>{
     console.log(`app is ready on : http://localhost:${PORT}`);
+
+    connectDatabase();
 });

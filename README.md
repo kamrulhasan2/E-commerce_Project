@@ -27,7 +27,9 @@
 //***********************
     day 2: 30-06-24
 //***********************</br>
-    -- use MVC architecture to structure the project 
+    -- use MVC architecture to structure the project </br>
+    -- connect database
+    -- create userSchema
 
 
 
