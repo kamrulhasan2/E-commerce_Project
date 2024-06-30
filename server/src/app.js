@@ -3,6 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const xssClean = require('xss-clean');
 const rateLimit = require('express-rate-limit');
+const userRouter = require('./routers/user.router');
 
 
 //create app
@@ -22,6 +23,8 @@ app.use(express.urlencoded({extended:true}));
 app.use(xssClean());
 app.use(limter);
 
+//cerated middeleware
+app.use(userRouter);
 
 // root route
 app.get('/',(req,res)=>{
