@@ -3,6 +3,7 @@ const app = require('./src/app');
 const createError = require('http-errors');
 const { PORT } = require('./src/secret');
 const connectDatabase = require('./src/config/database');
+const { errorResponse } = require('./src/controller/response.controller');
 
 
 
@@ -18,9 +19,14 @@ const connectDatabase = require('./src/config/database');
 
     //server side error
     app.use((err,req,res,next)=>{
-        return res.status(req.status || 500).json({
-            success: false,
-            message: `some thing went wrong: ${err.message}`
+        // return res.status(req.status || 500).json({
+        //     success: false,
+        //     message: `some thing went wrong: ${err.message}`
+        // });
+
+        return errorResponse(req,res,{
+            statusCode : req.status,
+            message : `some thing went wrong: ${err.message}`
         });
     });
 

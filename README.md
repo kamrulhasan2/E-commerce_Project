@@ -10,7 +10,6 @@
     -- 03-07-24 is the last date to finish the project </br>
 
 
-
 //***********************
     day 1: 29-06-24
 //***********************</br>
@@ -20,28 +19,21 @@
         -- xss-clean </br>
         -- express-rate-limit </br>
     -- create dotenv file & secret.js file for handling secret </br>
-
-
-
+   
 
 //***********************
     day 2: 30-06-24
 //***********************</br>
     -- use MVC architecture to structure the project </br>
-    -- connect database
-    -- create userSchema
-
-
-
-
-
-
+    -- connect database  </br>
+    -- create userSchema  </br>
+    -- searching, pagination added  </br>
 
 
 //***********************
     day 3: 01-07-24
 //***********************</br>
-
+    -- create a Response Controller for handale error and success response
 
 
 
