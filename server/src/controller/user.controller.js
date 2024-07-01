@@ -3,6 +3,8 @@ const users = require("../models/user.model");
 const { successResponse } = require('./response.controller');
 const  mongoose = require('mongoose');
 const { findWithId } = require('../service/findWithId');
+const fs = require('fs');
+
 
 
 const userController = async (req,res,next)=>{
@@ -67,8 +69,44 @@ const getUserById = async (req,res,next) =>{
 }
 
 
+const deleteUserController = async (req,res,next) =>{
+   
+    try {
+        
+        const id = req.params.id;
+        const user = await findWithId(id,options);
+        
+        userImagePath = user.image;
+        fs.access(userImagePath, (err)=>{
+            if(err){
+                console.error("user image dose not exist");
+            }else{
+                fs.unlink(userImagePath,(err)=>{
+                    if(err) throw err;
+                    console.log("user image is deleted");
+                });
+            }
+        } );
+
+      
+        await users.findByIdAndDelete({
+            _id: id,
+            isAdmin: false
+        });
+
+        return successResponse(req,res,{
+            statusCode:200,
+            message:"user is deleted successfully",
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
+
 
 module.exports ={
     userController,
-    getUserById
+    getUserById,
+    deleteUserController
 }

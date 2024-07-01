@@ -19,12 +19,7 @@ const { errorResponse } = require('./src/controller/response.controller');
 
     //server side error
     app.use((err,req,res,next)=>{
-        // return res.status(req.status || 500).json({
-        //     success: false,
-        //     message: `some thing went wrong: ${err.message}`
-        // });
-
-        return errorResponse(req,res,{
+       return errorResponse(req,res,{
             statusCode : req.status,
             message : `some thing went wrong: ${err.message}`
         });
