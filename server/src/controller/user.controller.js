@@ -1,8 +1,9 @@
 const createError = require('http-errors');
 const users = require("../models/user.model");
 const { successResponse } = require('./response.controller');
-const { default: mongoose } = require('mongoose');
-const { findUser } = require('../service/findUser');
+const  mongoose = require('mongoose');
+const { findWithId } = require('../service/findWithId');
+
 
 const userController = async (req,res,next)=>{
    try {
@@ -54,7 +55,7 @@ const getUserById = async (req,res,next) =>{
     try {
 
         const id = req.params.id;
-        const user = await findUser(id)
+        const user = await findWithId(id,options = { password:0 })
         return successResponse(req,res, {
             statusCode : 200,
             message : "user is returned successfully",

@@ -35,7 +35,8 @@
 //***********************</br>
     -- create a Response Controller for handale error and success response</br>
     -- create a route and controller for fetch an user from database by        getUserById </br>
-    -- create a findUser function to handale for fetching an user from database by id and handaling database error
+    -- create a findUser function to handale for fetching an user from database by id and handaling database error</br>
+    -- normalize findUser function to handale globol findItem and product etc
 
 
 
