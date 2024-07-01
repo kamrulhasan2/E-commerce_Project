@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const users = require("../models/user.model");
 const { successResponse } = require('./response.controller');
 const { default: mongoose } = require('mongoose');
+const { findUser } = require('../service/findUser');
 
 const userController = async (req,res,next)=>{
    try {
@@ -29,17 +30,6 @@ const userController = async (req,res,next)=>{
 
     if(!user) throw createError(404,'user not found')
 
-    // res.send({
-    //     message: 'user is returened successfully',
-    //     data:user,
-        // pagination: {
-        //     totalpages: Math.ceil(count/limit),
-        //     currentPage: page,
-        //     previousPage: page - 1 > 0 ? page - 1 : null,
-        //     nextPage: page + 1 <= Math.ceil(count/limit) ? page + 1 : null
-        // }
-    // });
-
         return successResponse(req,res, {
             statusCode : 200,
             message : "user is returned successfully",
@@ -64,19 +54,13 @@ const getUserById = async (req,res,next) =>{
     try {
 
         const id = req.params.id;
-        const options = {password: 0};
-
-        const user = await users.findById(id,options);
-
+        const user = await findUser(id)
         return successResponse(req,res, {
             statusCode : 200,
             message : "user is returned successfully",
             paylod : { user }
         });
     } catch (error) {
-        if(error instanceof mongoose.Error){
-            next(createError(400, 'Invalid user'))
-        }
         next(error);
     }
 }
