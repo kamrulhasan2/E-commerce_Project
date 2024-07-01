@@ -33,8 +33,8 @@
 //***********************
     day 3: 01-07-24
 //***********************</br>
-    -- create a Response Controller for handale error and success response
-
+    -- create a Response Controller for handale error and success response</b>
+    -- create a route and controller for fetch a user from database by        getUserById </br>
 
 
 
