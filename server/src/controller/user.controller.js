@@ -4,6 +4,7 @@ const { successResponse } = require('./response.controller');
 const  mongoose = require('mongoose');
 const { findWithId } = require('../service/findWithId');
 const fs = require('fs');
+const { deleteImage } = require('../helper/deleteImg.helper');
 
 
 
@@ -77,16 +78,7 @@ const deleteUserController = async (req,res,next) =>{
         const user = await findWithId(users,id,options);
         
         userImagePath = user.image;
-        fs.access(userImagePath, (err)=>{
-            if(err){
-                console.error("user image dose not exist");
-            }else{
-                fs.unlink(userImagePath,(err)=>{
-                    if(err) throw err;
-                    console.log("user image is deleted");
-                });
-            }
-        } );
+        deleteImage(userImagePath);
 
       
         await users.findByIdAndDelete({
