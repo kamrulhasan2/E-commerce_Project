@@ -44,8 +44,8 @@
 //***********************
     day 4: 02-07-24
 //***********************</br>
-    -- refactoring and dynamic findWithId controller for all data models
-    -- create a deleteImgage helper function to delete image from database
+    -- refactoring and dynamic findWithId controller for all data models</br>
+    -- create a deleteImgage helper function to delete image from database</br>
 
 
 
