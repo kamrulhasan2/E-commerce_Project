@@ -23,6 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(xssClean());
 app.use(limter);
+app.use(express.static("public"));
 
 //cerated middeleware
 app.use('/api/user',userRouter);

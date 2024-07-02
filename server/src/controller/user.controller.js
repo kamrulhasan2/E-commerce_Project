@@ -57,7 +57,7 @@ const getUserById = async (req,res,next) =>{
     try {
 
         const id = req.params.id;
-        const user = await findWithId(id,options = { password:0 })
+        const user = await findWithId(users,id,options = { password:0 })
         return successResponse(req,res, {
             statusCode : 200,
             message : "user is returned successfully",
@@ -74,7 +74,7 @@ const deleteUserController = async (req,res,next) =>{
     try {
         
         const id = req.params.id;
-        const user = await findWithId(id,options);
+        const user = await findWithId(users,id,options);
         
         userImagePath = user.image;
         fs.access(userImagePath, (err)=>{
