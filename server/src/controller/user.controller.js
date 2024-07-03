@@ -5,6 +5,7 @@ const  mongoose = require('mongoose');
 const { findWithId } = require('../service/findWithId');
 const fs = require('fs');
 const { deleteImage } = require('../helper/deleteImg.helper');
+const { create } = require('domain');
 
 
 
@@ -93,12 +94,44 @@ const deleteUserController = async (req,res,next) =>{
     } catch (error) {
         next(error);
     }
-}
+};
 
+
+const processRegisterController = async (req,res,next) =>{
+    try {
+        
+        const {name,email,phone,password} = req.body;
+
+        const existUser = await users.exists({email : email});
+
+        if(existUser){
+            throw createError(409,'User already exists with this email. Try too login');
+        };
+
+        const user= {
+            name,
+            email,
+            phone,
+            password 
+        }
+
+
+        return successResponse(req,res,{
+            statusCode:200,
+            message:"user is register successfully",
+            paylod:{
+                user
+            }
+        });
+    } catch (error) {
+        next(error);
+    }
+};
 
 
 module.exports ={
     userController,
     getUserById,
-    deleteUserController
+    deleteUserController,
+    processRegisterController
 }
