@@ -6,7 +6,8 @@ const { findWithId } = require('../service/findWithId');
 const fs = require('fs');
 const { deleteImage } = require('../helper/deleteImg.helper');
 const { createJWT } = require('../helper/JWT.helper');
-const { jwtActivationKey } = require('../secret');
+const { jwtActivationKey, clientURL } = require('../secret');
+const sendEmailWithNM = require('../helper/email.helper');
 
 
 
@@ -112,10 +113,28 @@ const processRegisterController = async (req,res,next) =>{
 
         const token = createJWT({name,email,phone,password}, jwtActivationKey, '10m')
 
+        //prepare email 
+        const emailData = {
+            email,
+            subject:`Account Activation Email`,
+            html:`
+                <h2> Hello ${name} !</h2>
+                <p> Please Click here to <a href="${clientURL}/api/users/activate/${token}" target ="_blank">
+                activate your account </a> </p>            
+            `
+        }
+
+        //send email with nodemailer
+       try {
+        await sendEmailWithNM(emailData);
+       } catch (error) {
+        throw createError(500,"some thing went wrong when email verification");
+        return;
+       }
 
         return successResponse(req,res,{
             statusCode:200,
-            message:"user is register successfully",
+            message:`Please cheak your email address : ${email}`,
             paylod:{
                 token
             }

@@ -8,13 +8,17 @@ const defaultImgPath = '/public/images/users/download.jpeg';
 
 const jwtActivationKey = process.env.JWT_SECRET_ACTIVATION_KEY || "kjhsdjueioiuoewwo1233";
 
-
-
+const smtpUserName = process.env.SMTP_USERNAME;
+const smtpPassword = process.env.SMTP_PASSWORD;
+const clientURL = process.env.CLIENT_URL;
 
 
 module.exports = {
     PORT,
     connectDB,
     defaultImgPath,
-    jwtActivationKey
+    jwtActivationKey,
+    smtpUserName,
+    smtpPassword,
+    clientURL
 }

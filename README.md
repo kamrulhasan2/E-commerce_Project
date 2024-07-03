@@ -60,5 +60,6 @@
 //***********************
     -- register an user 
     -- & create a json web token for user register
+    -- send email with nodemailer
 
 
