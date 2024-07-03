@@ -59,5 +59,6 @@
     day 5: 03-07-24
 //***********************
     -- register an user 
+    -- & create a json web token for user register
 
 

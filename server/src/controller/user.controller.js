@@ -5,7 +5,9 @@ const  mongoose = require('mongoose');
 const { findWithId } = require('../service/findWithId');
 const fs = require('fs');
 const { deleteImage } = require('../helper/deleteImg.helper');
-const { create } = require('domain');
+const { createJWT } = require('../helper/JWT.helper');
+const { jwtActivationKey } = require('../secret');
+
 
 
 
@@ -108,19 +110,14 @@ const processRegisterController = async (req,res,next) =>{
             throw createError(409,'User already exists with this email. Try too login');
         };
 
-        const user= {
-            name,
-            email,
-            phone,
-            password 
-        }
+        const token = createJWT({name,email,phone,password}, jwtActivationKey, '10m')
 
 
         return successResponse(req,res,{
             statusCode:200,
             message:"user is register successfully",
             paylod:{
-                user
+                token
             }
         });
     } catch (error) {
