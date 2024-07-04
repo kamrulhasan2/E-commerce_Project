@@ -153,18 +153,30 @@ const userVerifyController = async (req,res,next) =>{
             throw createError(404,'token not found');
         }
 
-        const decoded = jwt.verify(token,jwtActivationKey);
-        if(!decoded) throw createError(401,'user is not able to verified');
+        try {
+            const decoded = jwt.verify(token,jwtActivationKey);
+            if(!decoded) throw createError(401,'user is not able to verified');
 
-        const user = await users.create(decoded);
+            const user = await users.create(decoded);
 
-        return successResponse(req,res,{
-            statusCode:200,
-            message:`Register user successfully`,
-            paylod:{
-                user
+            return successResponse(req,res,{
+                statusCode:200,
+                message:`Register user successfully`,
+                paylod:{
+                    user
+                }
+            });
+        } catch (error) {
+            if(error.name === 'TokenExpiredError'){
+                throw createError(401,'Token has Expired');
+            }else if(error.name === 'jsonWebTokenError'){
+                throw createError(401,'Invalid token');
+            }else{
+                throw error;
             }
-        });
+        }
+
+        
     } catch (error) {
         next(error);
     }
