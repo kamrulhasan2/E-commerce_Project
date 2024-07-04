@@ -6,8 +6,10 @@
     -- creating server and require some packages </br>
     -- creating project structure planing </br>
     -- creating a deadline to finish the project </br>
-    -- up to 5 days must be finish the project </br>
+    -- up to 5 days must be finish the project(`this project is so big this can't be finish at 5 days as a beginn`er) </br>
     -- 03-07-24 is the last date to finish the project </br>
+    -- take extra 15 days (`because my exams are comming so I have to focous on my stadies`) to finish this project 
+    -- The final date to finish this project is *20-07-24*
 
 
 //***********************
@@ -49,17 +51,15 @@
 
 
 
-
-
-
-
-
-
 //***********************
     day 5: 03-07-24
+//***********************</br>
+    -- register an user </br>
+    -- & create a json web token for user register</br>
+    -- send email with nodemailer</br>
+
+
 //***********************
-    -- register an user 
-    -- & create a json web token for user register
-    -- send email with nodemailer
-
-
+    day 6: 04-07-24
+//***********************</br>
+    -- verify email & register user</br>

@@ -4,10 +4,12 @@ const { successResponse } = require('./response.controller');
 const  mongoose = require('mongoose');
 const { findWithId } = require('../service/findWithId');
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
 const { deleteImage } = require('../helper/deleteImg.helper');
 const { createJWT } = require('../helper/JWT.helper');
 const { jwtActivationKey, clientURL } = require('../secret');
 const sendEmailWithNM = require('../helper/email.helper');
+const { decode } = require('punycode');
 
 
 
@@ -144,10 +146,34 @@ const processRegisterController = async (req,res,next) =>{
     }
 };
 
+const userVerifyController = async (req,res,next) =>{
+    try {
+        const token = req.body.token;
+        if(!token){
+            throw createError(404,'token not found');
+        }
+
+        const decoded = jwt.verify(token,jwtActivationKey);
+        if(!decoded) throw createError(401,'user is not able to verified');
+
+        const user = await users.create(decoded);
+
+        return successResponse(req,res,{
+            statusCode:200,
+            message:`Register user successfully`,
+            paylod:{
+                user
+            }
+        });
+    } catch (error) {
+        next(error);
+    }
+}
 
 module.exports ={
     userController,
     getUserById,
     deleteUserController,
-    processRegisterController
+    processRegisterController,
+    userVerifyController
 }
