@@ -105,7 +105,7 @@ const deleteUserController = async (req,res,next) =>{
 const processRegisterController = async (req,res,next) =>{
     try {
         
-        const {name,email,phone,password} = req.body;
+        const {name,email,phone,password,image} = req.body;
 
         const existUser = await users.exists({email : email});
 
@@ -113,7 +113,7 @@ const processRegisterController = async (req,res,next) =>{
             throw createError(409,'User already exists with this email. Try too login');
         };
 
-        const token = createJWT({name,email,phone,password}, jwtActivationKey, '10m')
+        const token = createJWT({name,email,phone,password,image}, jwtActivationKey, '10m')
 
         //prepare email 
         const emailData = {
