@@ -63,4 +63,10 @@
     day 6: 04-07-24
 //***********************</br>
     -- verify email & register user</br>
-    -- upload images on server using `multer` packages
+    -- upload images on server using `multer` packages</br>
+
+
+//***********************
+    day 7: 05-07-24
+//***********************</br>
+    --file size & type filtering </br>

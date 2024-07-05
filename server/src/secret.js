@@ -14,6 +14,9 @@ const clientURL = process.env.CLIENT_URL;
 
 const uploadUserImgPath = process.env.UPLOAD_USER_IMG_PATH || 'public/images/users';
 
+const imgMaxFileSize = Number(process.env.IMG_MAX_FILE_SIZE) || 1024 * 1024 * 2;
+const imgFileExtention = process.env.IMG_FILE_EXTENTION || ['jpg' , 'jpeg', 'png' ,'gif'];
+
 
 module.exports = {
     PORT,
@@ -24,4 +27,7 @@ module.exports = {
     smtpPassword,
     clientURL,
     uploadUserImgPath,
+    imgMaxFileSize,
+    imgFileExtention
+
 }
