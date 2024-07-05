@@ -69,4 +69,5 @@
 //***********************
     day 7: 05-07-24
 //***********************</br>
-    --file size & type filtering </br>
+    -- file size & type filtering </br>
+    -- input validation using `express-validator` packages</br>
