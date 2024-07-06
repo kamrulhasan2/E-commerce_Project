@@ -10,6 +10,7 @@ const { createJWT } = require('../helper/JWT.helper');
 const { jwtActivationKey, clientURL } = require('../secret');
 const sendEmailWithNM = require('../helper/email.helper');
 const { decode } = require('punycode');
+const runValidation = require('../validator/run.auth');
 
 
 
@@ -182,10 +183,71 @@ const userVerifyController = async (req,res,next) =>{
     }
 }
 
+const updateUserController = async (req,res,next) =>{
+   
+    try {
+        
+        const id = req.params.id;
+        const updateOptions = {
+            new: true,
+            runValidation: true,
+            constext: 'query'
+        };
+        let updates = {};
+
+        // if(req.body.name){
+        //     updates.name = req.body.name;
+        // }
+        // if(req.body.password){
+        //     updates.password = req.body.password;
+        // }
+        // if(req.body.phone){
+        //     updates.phone = req.body.phone;
+        // }
+
+        for(key in req.body){
+            if(['name','password','phone','address'].includes(key)){
+                updates[key] = req.body[key];
+            }
+            else if(['email'].includes(key)){
+                throw createError(400,`${key} can not be updated`);
+            }
+            else{
+                throw createError(400,`${key} is invalid to update`);
+            }
+        }
+
+        const image = req.file;
+        if(image){
+            if(image.size > 2*1024*1024){
+                throw createError(400,"Large file. Maximum 2MB file are allowed");
+            }
+            updates.image = image;
+        }
+
+        const updatedUser = await users.findByIdAndUpdate(id,updates,updateOptions,).select('-password')
+
+        if(!updatedUser){
+            throw createError(404,'User does not exists with this ID');
+        }
+
+        return successResponse(req,res,{
+            statusCode:200,
+            message:"user is Updated successfully",
+            paylod: {
+                updatedUser,
+            }
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
 module.exports ={
     userController,
     getUserById,
     deleteUserController,
     processRegisterController,
-    userVerifyController
+    userVerifyController,
+    updateUserController
 }

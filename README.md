@@ -71,3 +71,9 @@
 //***********************</br>
     -- file size & type filtering </br>
     -- input validation using `express-validator` packages</br>
+
+
+//***********************
+    day 8: 06-07-24
+//***********************</br>
+    -- update user by id
