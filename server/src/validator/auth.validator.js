@@ -24,8 +24,11 @@ const validateUserRegProcess = [
     .matches(
         /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,20}$/
     )
-    .withMessage('Password should be Minimum 6 characters, Maximum 20 characters,At least one uppercase character,At least one lowercase character,At least one digit ,At least one special character')
-    
+    .withMessage('Password should be Minimum 6 characters, Maximum 20 characters,At least one uppercase character,At least one lowercase character,At least one digit ,At least one special character'),
+    body('image')
+    .optional()
+    .isString()
+    .withMessage('User image is optional')
 ];
 
 module.exports = {

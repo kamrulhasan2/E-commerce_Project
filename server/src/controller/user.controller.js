@@ -188,11 +188,17 @@ const updateUserController = async (req,res,next) =>{
     try {
         
         const id = req.params.id;
+        const options = {password: 0};
+        const user = await findWithId(users,{
+            id,
+            options
+         });
         const updateOptions = {
             new: true,
             runValidation: true,
             constext: 'query'
         };
+        
         let updates = {};
 
         // if(req.body.name){
@@ -217,7 +223,7 @@ const updateUserController = async (req,res,next) =>{
             }
         }
 
-        const image = req.file;
+        const image = req.file.path;
         if(image){
             if(image.size > 2*1024*1024){
                 throw createError(400,"Large file. Maximum 2MB file are allowed");

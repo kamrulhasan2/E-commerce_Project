@@ -20,9 +20,9 @@ const transporter = nodemailer.createTransport({
         html: emailData.html, // html body
         }
     
-        const info = await transporter.sendMail(options);
+        // const info = await transporter.sendMail(options);
     
-        console.log("Message sent: %s", info.messageId);
+        // console.log("Message sent: %s", info.messageId);
 
   } catch (error) {
     console.error('some thing went wrong when sending mail',error);
