@@ -7,6 +7,7 @@ const connectDB = 'mongodb://localhost:27017/E-commerce_project';
 const defaultImgPath = '/public/images/users/download.jpeg';
 
 const jwtActivationKey = process.env.JWT_SECRET_ACTIVATION_KEY || "kjhsdjueioiuoewwo1233";
+const jwtAccessKey = process.env.JWT_ACCESS_KEY;
 
 const smtpUserName = process.env.SMTP_USERNAME;
 const smtpPassword = process.env.SMTP_PASSWORD;
@@ -28,6 +29,7 @@ module.exports = {
     clientURL,
     uploadUserImgPath,
     imgMaxFileSize,
-    imgFileExtention
+    imgFileExtention,
+    jwtAccessKey
 
 }

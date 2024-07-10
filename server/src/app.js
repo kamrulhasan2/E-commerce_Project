@@ -1,10 +1,12 @@
 // require npm pakages
 const express = require('express');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 const xssClean = require('xss-clean');
 const rateLimit = require('express-rate-limit');
 const userRouter = require('./routers/user.router');
 const seedRouter = require('./routers/seed.router');
+const authRouter = require('./routers/auth.router');
 
 
 //create app
@@ -19,6 +21,7 @@ const limter = rateLimit({
 
 //application middeleware function use
 app.use(morgan('dev'));
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(xssClean());
@@ -28,6 +31,7 @@ app.use(express.static("public"));
 //cerated middeleware
 app.use('/api/user',userRouter);
 app.use('/api/seed',seedRouter);
+app.use('/api/auth',authRouter);
 
 // root route
 app.get('/',(req,res)=>{

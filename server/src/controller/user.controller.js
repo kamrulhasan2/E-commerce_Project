@@ -223,7 +223,7 @@ const updateUserController = async (req,res,next) =>{
             }
         }
 
-        const image = req.file.path;
+        const image = req.file?.path;
         if(image){
             if(image.size > 2*1024*1024){
                 throw createError(400,"Large file. Maximum 2MB file are allowed");
