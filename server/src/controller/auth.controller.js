@@ -49,6 +49,25 @@ const loginHandeler = async (req,res,next) =>{
 
 }
 
+const logoutHandeler = async (req,res,next) =>{
+    try {
+        
+        res.clearCookie('access-token');
+
+        return successResponse(req,res,{
+            statusCode:200,
+            message:"user is logged out successfully",
+            paylod: {
+               
+            }
+        });
+    } catch (error) {
+        next(error);
+    }
+
+}
+
 module.exports = {
     loginHandeler,
+    logoutHandeler
 };

@@ -90,3 +90,8 @@
 //***********************</br>
     -- add user login functionality</br>
     -- use jwt access token</br>
+
+//***********************
+    day 10: 11-07-24
+//***********************</br>
+    -- add user logout functionality</br>
