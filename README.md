@@ -95,3 +95,10 @@
     day 10: 11-07-24
 //***********************</br>
     -- add user logout functionality</br>
+    -- isLoggedIn middleware setup</br>
+
+//***********************
+    day 11: 15-07-24
+//***********************</br>
+    -- fixing bug in isLoggedIn middleware</br>
+    -- isLoggedOut middleware setup</br>

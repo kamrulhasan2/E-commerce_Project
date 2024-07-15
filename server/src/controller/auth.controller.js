@@ -27,12 +27,11 @@ const loginHandeler = async (req,res,next) =>{
             throw createError(403,'You are banned for this site');
         }
 
-        const token = createJWT({email}, jwtAccessKey, '10m');
+        const accessToken = createJWT({email}, jwtAccessKey, '10m');
 
-        res.cookie('access-token',token,{
+        res.cookie('accessToken',accessToken,{
             maxAge: 10 * 60 * 1000,
             httpOnly: true,
-            secure: true,
             sameSite: 'none'
         });
 
@@ -52,7 +51,7 @@ const loginHandeler = async (req,res,next) =>{
 const logoutHandeler = async (req,res,next) =>{
     try {
         
-        res.clearCookie('access-token');
+        res.clearCookie('accessToken');
 
         return successResponse(req,res,{
             statusCode:200,
